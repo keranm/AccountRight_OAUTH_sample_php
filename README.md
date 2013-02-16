@@ -10,4 +10,4 @@ To Use
 * declare new object 
 * request a token or refresh token
 
-Full details here [URL{}]
+[Visit our project page](http://myob-technology.github.com/AccountRight_OAUTH_sample_php/ "Oauth PHP App")
