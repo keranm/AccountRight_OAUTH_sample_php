@@ -42,8 +42,8 @@ $starttime = $startarray[1] + $startarray[0];
 //
 // *********************************************************************
 
-define('api_key',		'e3m4bd7z5v4f5fy59d2y7ykr'); // enter your MYOB Developer Key
-define('api_secret',	'n8HV3ku79Mua3y98T6DJMQaC'); // enter your MYOB Developer Secret
+define('api_key',		'[API KEY HERE]'); // enter your MYOB Developer Key
+define('api_secret',	'[API SECRET HERE]'); // enter your MYOB Developer Secret
 define('redirect_url',	'http://localhost/login_sample'); // enter the Redirect URL
 // NOTE: this MUST match the url you used when registering for a key
 //       you can login to my.myob.com.au anytime and change the redirect url for testing/production
