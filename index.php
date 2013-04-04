@@ -2,6 +2,8 @@
 $starttime = microtime();
 $startarray = explode(" ", $starttime);
 $starttime = $startarray[1] + $startarray[0];
+
+
 // *********************************************************************
 //
 //      MYOB Login sample using OAUTH & Company File authentication
@@ -21,7 +23,7 @@ $starttime = $startarray[1] + $startarray[0];
 // 
 // 1) set up the variables
 // 2) use a switch and URL variables to determine what we are doing
-// 3) if we are in localhost or network mode - don't use OAUTH  (TO BE DONE)
+// 3) if we are in localhost or network mode - don't use OAUTH
 // 4) if we are using https://api.myob.com/accountright/ then use OAUTH
 
 // TODO:
@@ -128,7 +130,13 @@ if( isset($_GET['code']) ) {
 			}
 		} else {
 			// okay we can now make authenticated requests
-			$page_to_show = 'company_file_list';
+
+			if( !isset($_GET['page']) ) {
+				$page_to_show = 'company_file_list';
+			} else {
+				$page_to_show = $_GET['page'];
+			}
+			
 		}
 	} else {
 		// no access token, this is a new user, show the home page
@@ -146,6 +154,13 @@ switch ($page_to_show) {
 		$page_title = 'Awesome Company Files';
 		include_once('includes/header.inc.php');
 		include_once('includes/cf_list.inc.php');
+		include_once('includes/footer.inc.php');
+		break;
+	case 'accounts':
+		// show a list of the company files we now have access too
+		$page_title = 'Awesome Account List';
+		include_once('includes/header.inc.php');
+		include_once('includes/account_list.inc.php');
 		include_once('includes/footer.inc.php');
 		break;
 	case '404':

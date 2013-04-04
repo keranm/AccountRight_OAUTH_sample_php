@@ -17,6 +17,7 @@ class myob_api_oauth {
 	// public function to get an access token
 	public function getAccessToken($api_key, $api_secret, $redirect_url, $access_code, $scope) {
 
+		
 		// build up the params
 		$params = array(
 					'client_id'				=>	$api_key,
@@ -27,8 +28,7 @@ class myob_api_oauth {
 					'grant_type'			=>	'authorization_code', // authorization_code -> gives you an access token
 		); // end params array */
 
-		$params = http_build_query($params);
-		//var_dump($params);
+		$params = http_build_query($params); // will urlencode data
 		return( $this->getToken($params) );
 
 	}
@@ -51,6 +51,7 @@ class myob_api_oauth {
 	// private function for token calls
 	private function getToken($params) {
 		
+		//echo $params;
 
 		$response = $this->getURL('https://secure.myob.com/oauth2/v1/authorize', $params);
 		

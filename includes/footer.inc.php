@@ -10,9 +10,20 @@
           $endtime = $endarray[1] + $endarray[0];
           $totaltime = $endtime - $starttime;
           $totaltime = round($totaltime,10);
+
+
+          $API_totaltime = $API_endtime - $API_starttime;
+          $API_totaltime = round($API_totaltime,10);
+
           echo "This page took: ";
           printf ("%f\n", $totaltime);
-          echo " seconds to load" 
+          echo " seconds to load";
+
+          echo "<br />The API call took: ";
+
+          printf ("%f\n", $API_totaltime);
+          echo " seconds" 
+
         ?></span></p>
       </div>
 

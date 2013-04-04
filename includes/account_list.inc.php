@@ -2,10 +2,14 @@
 
 function getURL($url, $username=NULL, $password=NULL, $api_key) {
   //echo 'token: '.$_SESSION['access_token'];
+
+  // build the cftoken
+  $cftoken = base64_encode('Administrator:');
+
   // setup the session & setup curl options
   $headers = array(
         'Authorization: Bearer '.$_SESSION['access_token'],
-        'x-myobapi-cftoken: ',
+        'x-myobapi-cftoken: '.$cftoken,
         'x-myobapi-key: '.$api_key,
     );
 
@@ -35,7 +39,7 @@ $API_starttime = microtime();
 $API_startarray = explode(" ", $API_starttime);
 $API_starttime = $API_startarray[1] + $API_startarray[0];
 
-$response = getURL(api_url, '', '', api_key);
+$response = getURL(api_url.'/'.$_GET['guid'].'/Account/', '', '', api_key);
 
 $API_endtime = microtime();
 $API_endarray = explode(" ", $API_endtime);
@@ -51,20 +55,16 @@ if( isset( $response->Message ) ) {
 ?>
 <!-- Jumbotron -->
 <div class="jumbotron">
-  <div class="form-signin">
-        <h2 class="form-signin-heading">Company files</h2>
+        <h2>Account List</h2>
         <?php
-        foreach($response as $companyFile) {
-          echo '<a class="btn btn-large btn-block" style="text-align: left; padding-left: 5px; padding-right: 5px;" href="?page=accounts&guid='.$companyFile->Id.'">'.$companyFile->Name.' </a>';
-        }
+        var_dump($response);
         ?>
-  </div>
 </div>
 
 <hr>
 
 <!-- Example row of columns -->
-<div class="row-fluid">
+<!-- <div class="row-fluid">
   <div class="span4">
     <h2>Do more</h2>
     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
@@ -80,5 +80,5 @@ if( isset( $response->Message ) ) {
     <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
     <p><a class="btn" href="#">View details &raquo;</a></p>
   </div>
-</div>
+</div>-->
 
